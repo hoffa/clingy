@@ -1,7 +1,21 @@
 # clang-format-check
 
-## Example
+## Examples
+
+Format:
 
 ```
-clang-format-check .
+cppy format .
+```
+
+Check format:
+
+```
+cppy format-check .
+```
+
+Lint:
+
+```
+cppy tidy
 ```
