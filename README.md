@@ -19,5 +19,5 @@ cppy format-check .
 Lint:
 
 ```
-cppy tidy
+cppy tidy .
 ```
