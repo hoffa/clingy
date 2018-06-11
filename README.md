@@ -1,0 +1,1 @@
+# clang-format-check
