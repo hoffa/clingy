@@ -1,4 +1,6 @@
-# clang-format-check
+# cppy
+
+Convenience script for Clang tools.
 
 ## Examples
 
