@@ -1,14 +1,16 @@
-#!/usr/bin/env bash
-set -uo pipefail
+#!/bin/sh
 
 EXIT=0
 DIR="$1"
 shift
 
+mkfifo files
+find "${DIR}" -type f \( -iname \*.cpp -or -iname \*.hpp -or -iname \*.c -or -iname \*.h \) > files &
 while read -r file; do
     if ! clang-format "$@" "${file}" | colordiff -u "${file}" -; then
         EXIT=1
     fi
-done < <(find "${DIR}" -type f \( -iname \*.cpp -or -iname \*.hpp -or -iname \*.c -or -iname \*.h \))
+done < files
+rm files
 
 exit ${EXIT}
