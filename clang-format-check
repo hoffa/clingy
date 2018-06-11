@@ -4,13 +4,13 @@ EXIT=0
 DIR="$1"
 shift
 
-mkfifo files
-find "${DIR}" -type f \( -iname \*.cpp -or -iname \*.hpp -or -iname \*.c -or -iname \*.h \) > files &
-while read -r file; do
-    if ! clang-format "$@" "${file}" | colordiff -u "${file}" -; then
+mkfifo filenames
+find "${DIR}" -type f \( -iname \*.cpp -or -iname \*.hpp -or -iname \*.c -or -iname \*.h \) > filenames &
+while read -r filename; do
+    if ! clang-format "$@" "${filename}" | diff -u "${filename}" -; then
         EXIT=1
     fi
-done < files
-rm files
+done < filenames
+rm filenames
 
 exit ${EXIT}
