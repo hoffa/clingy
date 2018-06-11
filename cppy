@@ -2,7 +2,7 @@
 set -euo pipefail
 
 print_help() {
-    echo "Usage: $0 {format,format-check,lint} directory"
+    echo "Usage: cppy {format,format-check,lint} directory"
 }
 
 cpp_files() {
