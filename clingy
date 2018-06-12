@@ -5,7 +5,7 @@ set -euo pipefail
 : "${CLANG_TIDY:=clang-tidy}"
 
 print_help() {
-    echo "Usage: cppy {format,format-check,lint} directory"
+    echo "Usage: clingy {format,format-check,lint} directory"
 }
 
 cpp_files() {

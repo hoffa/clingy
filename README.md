@@ -1,4 +1,4 @@
-# cppy
+# clingy
 
 Convenience script for Clang tools.
 
@@ -6,8 +6,8 @@ Convenience script for Clang tools.
 
 ```
 cd /usr/local/bin
-curl -O https://raw.githubusercontent.com/hoffa/cppy/master/cppy
-chmod +x cppy
+curl -O https://raw.githubusercontent.com/hoffa/cppy/master/clingy
+chmod +x clingy
 ```
 
 ## Examples
@@ -15,17 +15,17 @@ chmod +x cppy
 Format:
 
 ```
-cppy format .
+clingy format .
 ```
 
 Check format:
 
 ```
-cppy format-check .
+clingy format-check .
 ```
 
 Lint:
 
 ```
-cppy tidy .
+clingy tidy .
 ```
