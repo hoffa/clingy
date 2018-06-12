@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+: "${CLANG_FORMAT:=clang-format}"
+: "${CLANG_TIDY:=clang-tidy}"
+
 print_help() {
     echo "Usage: cppy {format,format-check,lint} directory"
 }
@@ -31,19 +34,19 @@ shift
 
 case "${tool}" in
 format)
-    cpp_files "${directory}" | xargs clang-format -i "$@"
+    cpp_files "${directory}" | xargs "${CLANG_FORMAT}" -i "$@"
     ;;
 format-check)
     code=0
     while read -r file; do
-        if ! clang-format "$@" "${file}" | colordiff -u "${file}" -; then
+        if ! "${CLANG_FORMAT}" "$@" "${file}" | colordiff -u "${file}" -; then
             code=1
         fi
     done < <(cpp_files "${directory}")
     exit ${code}
     ;;
 tidy)
-    cpp_files "${directory}" | xargs clang-tidy "$@"
+    cpp_files "${directory}" | xargs "${CLANG_TIDY}" "$@"
     ;;
 *)
     print_help
