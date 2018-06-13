@@ -3,15 +3,6 @@ set -euo pipefail
 
 : "${DIFF:=diff}"
 
-print_help() {
-    echo "Usage: clingy {format,check} directory"
-}
-
-if [[ $# -lt 2 ]]; then
-    print_help
-    exit 1
-fi
-
 tool=$1
 directory=$2
 shift
@@ -42,6 +33,5 @@ check)
     exit ${code}
     ;;
 *)
-    print_help
     exit 1
 esac

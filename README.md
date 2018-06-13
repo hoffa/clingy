@@ -1,6 +1,6 @@
 # clingy
 
-Convenience script for Clang formatter and linter. Only requires `clang-format` and `clang-tidy`.
+Convenience script for `clang-format`.
 
 ## Install
 
@@ -21,11 +21,5 @@ clingy format .
 Check format:
 
 ```
-clingy format-check .
-```
-
-Lint:
-
-```
-clingy tidy .
+clingy check .
 ```
