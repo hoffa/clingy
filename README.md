@@ -1,6 +1,6 @@
 # clingy
 
-Convenience script for Clang formatter and linter.
+Convenience script for Clang formatter and linter. Only requires `clang-format` and `clang-tidy`.
 
 ## Install
 
