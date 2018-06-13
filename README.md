@@ -1,6 +1,6 @@
 # clingy
 
-Convenience script for Clang tools.
+Convenience script for Clang formatter and linter.
 
 ## Install
 
