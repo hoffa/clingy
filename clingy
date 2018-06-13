@@ -1,26 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${CLANG_FORMAT:=clang-format}"
-: "${CLANG_TIDY:=clang-tidy}"
 : "${DIFF:=diff}"
 
 print_help() {
-    echo "Usage: clingy {format,format-check,lint} directory"
-}
-
-cpp_files() {
-    find "$1" -type f \
-        -iname \*.c -o \
-        -iname \*.c++ -o \
-        -iname \*.cc -o \
-        -iname \*.cpp -o \
-        -iname \*.cxx -o \
-        -iname \*.h -o \
-        -iname \*.h++ -o \
-        -iname \*.hh -o \
-        -iname \*.hpp -o \
-        -iname \*.hxx
+    echo "Usage: clingy {format,check} directory"
 }
 
 if [[ $# -lt 2 ]]; then
@@ -33,24 +17,31 @@ directory=$2
 shift
 shift
 
+files=$(mktemp)
+find "${directory}" -type f \
+    -iname \*.c -o \
+    -iname \*.c++ -o \
+    -iname \*.cc -o \
+    -iname \*.cpp -o \
+    -iname \*.cxx -o \
+    -iname \*.h -o \
+    -iname \*.h++ -o \
+    -iname \*.hh -o \
+    -iname \*.hpp -o \
+    -iname \*.hxx > "${files}"
+
 case "${tool}" in
 format)
-    cpp_files "${directory}" | xargs "${CLANG_FORMAT}" -i "$@"
+    xargs clang-format -i "$@" < "${files}"
     ;;
-format-check)
+check)
     code=0
     while read -r file; do
-        if ! "${CLANG_FORMAT}" "$@" "${file}" | ${DIFF} -u "${file}" -; then
-            code=1
-        fi
-    done < <(cpp_files "${directory}")
+        clang-format "$@" "${file}" | ${DIFF} -u "${file}" - || code=1
+    done < "${files}"
     exit ${code}
-    ;;
-tidy)
-    cpp_files "${directory}" | xargs "${CLANG_TIDY}" "$@"
     ;;
 *)
     print_help
     exit 1
-    ;;
 esac
