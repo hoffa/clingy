@@ -3,6 +3,7 @@ set -euo pipefail
 
 : "${CLANG_FORMAT:=clang-format}"
 : "${CLANG_TIDY:=clang-tidy}"
+: "${DIFF:=diff}"
 
 print_help() {
     echo "Usage: clingy {format,format-check,lint} directory"
@@ -39,7 +40,7 @@ format)
 format-check)
     code=0
     while read -r file; do
-        if ! "${CLANG_FORMAT}" "$@" "${file}" | colordiff -u "${file}" -; then
+        if ! "${CLANG_FORMAT}" "$@" "${file}" | ${DIFF} -u "${file}" -; then
             code=1
         fi
     done < <(cpp_files "${directory}")
