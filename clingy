@@ -4,12 +4,8 @@ set -euo pipefail
 : "${DIFF:=diff}"
 
 tool=$1
-directory=$2
-shift
-shift
-
 files=$(mktemp)
-find "${directory}" -type f \
+find "$2" -type f \
     -iname \*.c -o \
     -iname \*.c++ -o \
     -iname \*.cc -o \
@@ -20,6 +16,8 @@ find "${directory}" -type f \
     -iname \*.hh -o \
     -iname \*.hpp -o \
     -iname \*.hxx > "${files}"
+shift
+shift
 
 case "${tool}" in
 format)
