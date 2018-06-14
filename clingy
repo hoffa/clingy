@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${DIFF:=diff}"
-
 tool=$1
 files=$(mktemp)
 find "$2" -type f \
@@ -26,7 +24,7 @@ format)
 check)
     code=0
     while read -r file; do
-        clang-format "$@" "${file}" | ${DIFF} -u "${file}" - || code=1
+        clang-format "$@" "${file}" | ${DIFF:=diff} -u "${file}" - || code=1
     done < "${files}"
     exit ${code}
     ;;
