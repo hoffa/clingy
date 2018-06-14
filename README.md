@@ -2,6 +2,8 @@
 
 Convenience script for `clang-format`.
 
+`clang-format` is called using `-style=file`.
+
 ## Install
 
 ```
@@ -9,16 +11,16 @@ curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppy/mast
 chmod +x /usr/local/bin/cppfmt
 ```
 
-## Examples
+## Usage
 
 Format:
 
 ```
-cppfmt format .
+cppfmt .
 ```
 
 Check format:
 
 ```
-cppfmt check .
+cppfmt --check .
 ```

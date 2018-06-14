@@ -15,7 +15,7 @@ files() {
         -iname \*.hxx
 }
 
-if [[ "$1" = "--check" ]]; then
+if [[ "$1" == "--check" ]]; then
     code=0
     while read -r file; do
         clang-format -style=file "${file}" | ${DIFF:=diff} -u "${file}" - || code=1
