@@ -1,13 +1,12 @@
-# clingy
+# cppfmt
 
 Convenience script for `clang-format`.
 
 ## Install
 
 ```
-cd /usr/local/bin
-curl -O https://raw.githubusercontent.com/hoffa/cppy/master/clingy
-chmod +x clingy
+curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppy/master/cppfmt
+chmod +x /usr/local/bin/cppfmt
 ```
 
 ## Examples
@@ -15,11 +14,11 @@ chmod +x clingy
 Format:
 
 ```
-clingy format .
+cppfmt format .
 ```
 
 Check format:
 
 ```
-clingy check .
+cppfmt check .
 ```
