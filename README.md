@@ -7,8 +7,9 @@ Convenience script for `clang-format`.
 ## Install
 
 ```
-curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppy/master/cppfmt
-chmod +x /usr/local/bin/cppfmt
+cd /usr/local/bin
+curl -LO https://raw.githubusercontent.com/hoffa/cppy/master/cppfmt
+chmod +x cppfmt
 ```
 
 ## Usage
