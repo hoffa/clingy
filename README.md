@@ -1,6 +1,6 @@
 # cppfmt
 
-Convenience script for `clang-format`.
+Tiny convenience script for `clang-format`.
 
 `clang-format` is called using `-style=file`.
 
@@ -20,7 +20,7 @@ Format:
 cppfmt .
 ```
 
-Check format:
+Check:
 
 ```
 cppfmt --check .
