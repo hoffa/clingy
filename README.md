@@ -1,13 +1,13 @@
 # cppfmt
 
-Convenience script for `clang-format`.
+Tiny convenience script for `clang-format`.
 
 `clang-format` is called using `-style=file`.
 
 ## Install
 
 ```
-curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppy/master/cppfmt
+curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppfmt/master/cppfmt
 chmod +x /usr/local/bin/cppfmt
 ```
 
@@ -19,7 +19,7 @@ Format:
 cppfmt .
 ```
 
-Check format:
+Check:
 
 ```
 cppfmt --check .
