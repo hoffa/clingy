@@ -15,12 +15,14 @@ files() {
         -iname \*.hxx
 }
 
+: "${CLANG_FORMAT:=clang-format}"
+
 if [[ "$1" == "--check" ]]; then
     code=0
     while read -r file; do
-        clang-format -style=file "${file}" | ${DIFF:=diff} -u "${file}" - || code=1
+        "${CLANG_FORMAT}" -style=file "${file}" | "${DIFF:=diff}" -u "${file}" - || code=1
     done < <(files "$2")
     exit ${code}
 fi
 
-files "$1" | xargs clang-format -style=file -i
+files "$1" | xargs "${CLANG_FORMAT}" -style=file -i
