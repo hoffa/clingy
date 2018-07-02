@@ -2,7 +2,8 @@
 set -euo pipefail
 
 files() {
-    find "$1" -type f \
+    find "${DIRECTORY}" -type f ${IGNORE} \
+        \( \
         -iname \*.c -o \
         -iname \*.c++ -o \
         -iname \*.cc -o \
@@ -12,17 +13,40 @@ files() {
         -iname \*.h++ -o \
         -iname \*.hh -o \
         -iname \*.hpp -o \
-        -iname \*.hxx
+        -iname \*.hxx \
+        \)
 }
 
 : "${CLANG_FORMAT:=clang-format}"
+: "${DIFF:=diff}"
+IGNORE=""
+CHECK=false
+DIRECTORY="."
 
-if [[ "$1" == "--check" ]]; then
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --check)
+        CHECK=true
+        shift
+        ;;
+    --ignore)
+        IGNORE="$IGNORE ! -name $2"
+        shift
+        shift
+        ;;
+    *)
+        DIRECTORY="$1"
+        shift
+        ;;
+    esac
+done
+
+if [[ $CHECK == true ]]; then
     code=0
     while read -r file; do
-        "${CLANG_FORMAT}" -style=file "${file}" | "${DIFF:=diff}" -u "${file}" - || code=1
-    done < <(files "$2")
+        "${CLANG_FORMAT}" -style=file "${file}" | "${DIFF}" -u "${file}" - || code=1
+    done < <(files)
     exit ${code}
 fi
 
-files "$1" | xargs "${CLANG_FORMAT}" -style=file -i
+files | xargs "${CLANG_FORMAT}" -style=file -i
