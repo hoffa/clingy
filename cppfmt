@@ -18,7 +18,7 @@ files() {
 }
 
 : "${CLANG_FORMAT:=clang-format}"
-: "${DIFF:=colordiff}"
+: "${DIFF:=diff}"
 IGNORE=""
 CHECK=false
 DIRECTORY="."
