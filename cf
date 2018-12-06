@@ -9,12 +9,16 @@ included_files() {
 }
 
 files() {
-    [ -z "${EXCLUDE}" ] && included_files || included_files | grep -Eiv "${EXCLUDE}"
+    if [ -z "${EXCLUDE}" ]; then
+        included_files
+    else
+        included_files | grep -Eiv "${EXCLUDE}"
+    fi
 }
 
 if [ -z "${FORMAT}" ]; then
     diffs=$(mktemp)
-    files | while read file; do
+    files | while read -r file; do
         "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || echo "${file}" >> "${diffs}"
     done
     [ -s "${diffs}" ] && exit 1 || exit 0
