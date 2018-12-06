@@ -30,3 +30,5 @@ For example:
 ```shell
 curl -L https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
 ```
+
+If any of the files differ, `cf` will exit with a non-zero code.
