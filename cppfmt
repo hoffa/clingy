@@ -1,51 +1,23 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
 
-files() {
-    find "${DIRECTORY}" -type f ${IGNORE} \
-        \( \
-        -iname \*.c -o \
-        -iname \*.c++ -o \
-        -iname \*.cc -o \
-        -iname \*.cpp -o \
-        -iname \*.cxx -o \
-        -iname \*.h -o \
-        -iname \*.h++ -o \
-        -iname \*.hh -o \
-        -iname \*.hpp -o \
-        -iname \*.hxx \
-        \)
+DIRECTORY="$1"
+[ -z "${CLANG_FORMAT}" ] && CLANG_FORMAT=clang-format
+[ -z "${INCLUDE}" ] && INCLUDE="\.(c|c\+\+|cc|cpp|cxx|h|h\+\+|hh|hpp|hxx|inc)$"
+
+included_files() {
+    find "${DIRECTORY}" -type f | grep -Ei "${INCLUDE}"
 }
 
-: "${CLANG_FORMAT:=clang-format}"
-IGNORE=""
-CHECK=false
-DIRECTORY="."
+files() {
+    [ -z "${EXCLUDE}" ] && included_files || included_files | grep -Eiv "${EXCLUDE}"
+}
 
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-    --check)
-        CHECK=true
-        shift
-        ;;
-    --ignore)
-        IGNORE="$IGNORE ! -name $2"
-        shift
-        shift
-        ;;
-    *)
-        DIRECTORY="$1"
-        shift
-        ;;
-    esac
-done
-
-if [[ $CHECK == true ]]; then
-    code=0
-    while read -r file; do
-        "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || code=1
-    done < <(files)
-    exit ${code}
+if [ -z "${CHECK}" ]; then
+    files | xargs "${CLANG_FORMAT}" -style=file -i
+else
+    diffs=$(mktemp)
+    files | while read file; do
+        "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || echo "${file}" >> "${diffs}"
+    done
+    [ -s "${diffs}" ] && exit 1 || exit 0
 fi
-
-files | xargs "${CLANG_FORMAT}" -style=file -i
