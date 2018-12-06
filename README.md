@@ -7,7 +7,7 @@ Tiny convenience script for `clang-format`. Will run on pretty much any POSIX sy
 ## Installation
 
 ```shell
-curl -o /usr/local/bin/cf https://raw.githubusercontent.com/hoffa/cf/master/cf
+curl -Lo /usr/local/bin/cf https://raw.githubusercontent.com/hoffa/cf/master/cf
 chmod +x /usr/local/bin/cf
 ```
 
@@ -26,5 +26,5 @@ Use `FORMAT=1` to format the files instead of checking for differences.
 For example:
 
 ```shell
-curl https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
+curl -L https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
 ```
