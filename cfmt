@@ -1,11 +1,11 @@
 #!/bin/sh
 
-DIRECTORY="$1"
+[ -z "${DIR}" ] && DIR=.
 [ -z "${CLANG_FORMAT}" ] && CLANG_FORMAT=clang-format
 [ -z "${INCLUDE}" ] && INCLUDE="\.(c|c\+\+|cc|cpp|cxx|h|h\+\+|hh|hpp|hxx|inc)$"
 
 included_files() {
-    find "${DIRECTORY}" -type f | grep -Ei "${INCLUDE}"
+    find "${DIR}" -type f | grep -Ei "${INCLUDE}"
 }
 
 files() {
