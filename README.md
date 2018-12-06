@@ -1,26 +1,21 @@
-# cppfmt
+# cf
 
-Tiny convenience script for `clang-format`.
-
-`clang-format` is called using `-style=file`.
-
-## Install
-
-```
-curl -Lo /usr/local/bin/cppfmt https://raw.githubusercontent.com/hoffa/cppfmt/master/cppfmt
-chmod +x /usr/local/bin/cppfmt
-```
+Tiny convenience script for `clang-format`. Will run on pretty much any POSIX system.
 
 ## Usage
 
-Format:
-
-```
-cppfmt .
+```shell
+cf
 ```
 
-Check:
+All arguments are passed as environment variables for easy piping.
 
-```
-cppfmt --check .
+Files matching `INCLUDE` are included. Those matching `EXCLUDE` are excluded.
+
+Use `FORMAT=1` to format the files instead of checking for differences.
+
+For example:
+
+```shell
+curl -L https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
 ```
