@@ -23,6 +23,8 @@ Files matching `INCLUDE` are included. Those matching `EXCLUDE` are excluded. Bo
 
 Use `FORMAT=1` to format the files instead of checking for differences.
 
+### In CI
+
 For example:
 
 ```shell
