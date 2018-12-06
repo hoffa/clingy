@@ -17,7 +17,7 @@ chmod +x /usr/local/bin/cf
 cf
 ```
 
-All arguments are passed as environment variables for easy piping.
+All arguments are passed as environment variables.
 
 Files matching `INCLUDE` are included. Those matching `EXCLUDE` are excluded. Both are passed to `grep -E` (i.e. they're extended regular expressions).
 
