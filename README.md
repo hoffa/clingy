@@ -24,5 +24,5 @@ Use `FORMAT=1` to format the files instead of checking for differences.
 For example:
 
 ```shell
-curl -L https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
+curl https://raw.githubusercontent.com/hoffa/cf/master/cf | DIR=src EXCLUDE="json\.hpp" sh
 ```
