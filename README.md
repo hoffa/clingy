@@ -5,7 +5,7 @@ Tiny convenience script for `clang-format`. Will run on pretty much any POSIX sy
 ## Installation
 
 ```shell
-curl -Lo /usr/local/bin/cf https://raw.githubusercontent.com/hoffa/cf/master/cf
+curl -o /usr/local/bin/cf https://raw.githubusercontent.com/hoffa/cf/master/cf
 chmod +x /usr/local/bin/cf
 ```
 
