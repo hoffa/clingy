@@ -1,5 +1,7 @@
 # cf
 
+[![Build Status](https://travis-ci.org/hoffa/cf.svg?branch=master)](https://travis-ci.org/hoffa/cf)
+
 Tiny convenience script for `clang-format`. Will run on pretty much any POSIX system.
 
 ## Installation
