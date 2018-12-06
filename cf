@@ -12,12 +12,12 @@ files() {
     [ -z "${EXCLUDE}" ] && included_files || included_files | grep -Eiv "${EXCLUDE}"
 }
 
-if [ -z "${CHECK}" ]; then
-    files | xargs "${CLANG_FORMAT}" -style=file -i
-else
+if [ -z "${FORMAT}" ]; then
     diffs=$(mktemp)
     files | while read file; do
         "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || echo "${file}" >> "${diffs}"
     done
     [ -s "${diffs}" ] && exit 1 || exit 0
 fi
+
+files | xargs "${CLANG_FORMAT}" -style=file -i
