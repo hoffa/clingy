@@ -21,7 +21,9 @@ if [ -z "${FORMAT}" ]; then
     files | while read -r file; do
         "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || echo "${file}" >> "${diffs}"
     done
-    [ -s "${diffs}" ] && exit 1
+    if [ -s "${diffs}" ]; then
+        exit 1
+    fi
 else
     files | xargs "${CLANG_FORMAT}" -style=file -i
 fi
