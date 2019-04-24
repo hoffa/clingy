@@ -18,7 +18,7 @@ files() {
 
 if [ -z "${FORMAT}" ]; then
     diffs=$(mktemp)
-    files | while read -r file; do
+    files | while IFS= read -r file; do
         "${CLANG_FORMAT}" -style=file "${file}" | diff -u "${file}" - || echo "${file}" >> "${diffs}"
     done
     if [ -s "${diffs}" ]; then
