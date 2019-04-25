@@ -5,14 +5,14 @@
 [ -z "${INCLUDE}" ] && INCLUDE="\.(c|c\+\+|cc|cpp|cxx|h|h\+\+|hh|hpp|hxx|inc)$"
 
 included_files() {
-    find "${DIR}" -type f | grep -Ei "${INCLUDE}"
+    find "${DIR}" -type f | egrep "${INCLUDE}"
 }
 
 files() {
     if [ -z "${EXCLUDE}" ]; then
         included_files
     else
-        included_files | grep -Eiv "${EXCLUDE}"
+        included_files | egrep -v "${EXCLUDE}"
     fi
 }
 

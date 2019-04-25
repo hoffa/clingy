@@ -21,7 +21,7 @@ cf
 
 All arguments are passed as environment variables.
 
-Files matching `INCLUDE` are included. Those matching `EXCLUDE` are excluded. Both are passed to `grep -E` (i.e. they're extended regular expressions).
+Files matching `INCLUDE` are included. Those matching `EXCLUDE` are excluded. Both are passed to `egrep`.
 
 Use `FORMAT=1` to format the files instead of checking for differences.
 
