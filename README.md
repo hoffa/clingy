@@ -1,6 +1,6 @@
 # cf
 
-[![Build Status](https://travis-ci.org/hoffa/cf.svg?branch=master)](https://travis-ci.org/hoffa/cf)
+[![Build Status](https://travis-ci.com/hoffa/cf.svg?branch=master)](https://travis-ci.com/hoffa/cf)
 
 Tiny convenience script for easily checking formatting with `clang-format`.
 
