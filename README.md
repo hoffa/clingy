@@ -1,6 +1,6 @@
 # cf
 
-[![Build Status](https://travis-ci.com/hoffa/cf.svg?branch=master)](https://travis-ci.com/hoffa/cf)
+[![Build Status](https://github.com/hoffa/cf/workflows/.github/workflows/workflow.yml/badge.svg)](https://github.com/hoffa/cf/actions)
 
 Tiny convenience script for easily checking formatting with `clang-format`.
 
